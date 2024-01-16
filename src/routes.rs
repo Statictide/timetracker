@@ -1,37 +1,29 @@
 use axum::{extract::State, response::IntoResponse, Form};
 use serde::Deserialize;
-use tracing::info;
-
 use crate::{templates::*, SyncAppState};
 
 pub async fn index() -> impl IntoResponse {
-    info!("Request");
-    let template = HelloTemplate {};
-    HtmlTemplate(template)
+    IndexTemplate {}
 }
 
 pub async fn another_page() -> impl IntoResponse {
-    let template = AnotherPageTemplate {};
-    HtmlTemplate(template)
+    AnotherPageTemplate {}
 }
 
 #[derive(Deserialize)]
-pub struct TodoRequest {
+pub struct AddTodoRequest {
     pub todo: String,
 }
 
 pub async fn add_todo(
     State(state): State<SyncAppState>,
-    Form(todo): Form<TodoRequest>,
+    Form(todo): Form<AddTodoRequest>,
 ) -> impl IntoResponse {
-    use crate::templates::*;
 
     let mut lock = state.todos.lock().unwrap();
     lock.push(todo.todo);
 
-    let template = TodoList {
+    TodoList {
         todos: lock.clone(),
-    };
-
-    HtmlTemplate(template)
+    }
 }
