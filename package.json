@@ -2,7 +2,8 @@
   "name": "timetracker",
   "version": "1.0.0",
   "scripts": {
-    "format": "prettier --write --ignore-unknown ."
+    "format": "prettier --write --ignore-unknown .",
+    "dev": "pnpm dlx tailwindcss -i styles/tailwind.css -o assets/main.css --watch"
   },
   "keywords": [],
   "license": "ISC",
