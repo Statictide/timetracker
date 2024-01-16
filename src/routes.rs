@@ -15,10 +15,6 @@ pub async fn another_page() -> impl IntoResponse {
     HtmlTemplate(template)
 }
 
-pub async fn hello_from_the_server() -> &'static str {
-    "Hello!"
-}
-
 #[derive(Deserialize)]
 pub struct TodoRequest {
     pub todo: String,

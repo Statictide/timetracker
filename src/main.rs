@@ -32,19 +32,21 @@ async fn main() {
     let app_state = SyncAppState::default();
 
     info!("initializing router...");
-
     let assets_path = std::env::current_dir().unwrap();
     let assets_path = assets_path.to_str().unwrap();
 
     let api_router = Router::new()
-        .route("/hello", get(routes::hello_from_the_server))
         .route("/todos", post(routes::add_todo))
         .with_state(app_state);
 
-    let app = Router::new()
-        .nest("/api", api_router)
+    
+    let pages_router = Router::new()
         .route("/", get(routes::index))
-        .route("/another-page", get(routes::another_page))
+        .route("/another-page", get(routes::another_page));
+
+    let app = Router::new()
+        .nest("/", pages_router)
+        .nest("/api", api_router)
         .nest_service("/assets", ServeDir::new(format!("{assets_path}/assets")));
 
     let ip = "127.0.0.1";

@@ -26,15 +26,15 @@ where
 }
 
 #[derive(Template)]
-#[template(path = "hello.html")]
+#[template(path = "pages/hello.html")]
 pub struct HelloTemplate;
 
 #[derive(Template)]
-#[template(path = "another-page.html")]
+#[template(path = "pages/another-page.html")]
 pub struct AnotherPageTemplate;
 
 #[derive(Template)]
-#[template(path = "todo-list.html")]
+#[template(path = "components/todo-list.html")]
 pub struct TodoList {
     pub todos: Vec<String>,
 }
