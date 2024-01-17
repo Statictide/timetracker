@@ -1847,6 +1847,24 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6980e8d7511241f8acf4aebddbb1ff938df5eebe98691418c4468d0b72a96a67"
 
 [[package]]
+name = "static"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "askama",
+ "askama_axum",
+ "axum 0.7.4",
+ "serde",
+ "shuttle-axum",
+ "shuttle-runtime",
+ "tokio",
+ "tower",
+ "tower-http 0.5.1",
+ "tower-livereload",
+ "tracing",
+]
+
+[[package]]
 name = "strfmt"
 version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1984,24 +2002,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "26197e33420244aeb70c3e8c78376ca46571bc4e701e4791c2cd9f57dcb3a43f"
 dependencies = [
  "time-core",
-]
-
-[[package]]
-name = "timetracker"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "askama",
- "askama_axum",
- "axum 0.7.4",
- "serde",
- "shuttle-axum",
- "shuttle-runtime",
- "tokio",
- "tower",
- "tower-http 0.5.1",
- "tracing",
- "tracing-subscriber",
 ]
 
 [[package]]
@@ -2208,6 +2208,20 @@ name = "tower-layer"
 version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c20c8dbed6283a09604c3e69b4b7eeb54e298b8a600d4d5ecb5ad39de609f1d0"
+
+[[package]]
+name = "tower-livereload"
+version = "0.9.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b1e74a1dba7fccc96d1ea1fe8abe0ad8e9b84fb1d55ddefc7bc9da3b0681dc73"
+dependencies = [
+ "bytes",
+ "http 1.0.0",
+ "http-body 1.0.0",
+ "pin-project-lite",
+ "tokio",
+ "tower",
+]
 
 [[package]]
 name = "tower-service"

@@ -15,14 +15,15 @@ pnpm format
 
 ## Run server
 ```
-cargo run
+cargo install cargo-shuttle
+cargo shuttle run
 ```
 
 or
 
 ```
 cargo install cargo-watch
-cargo watch -x run
+cargo watch -x 'shuttle run'
 ```
 
 ## Deploy

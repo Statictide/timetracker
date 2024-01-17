@@ -1,6 +1,6 @@
+use crate::{templates::*, SyncAppState};
 use axum::{extract::State, response::IntoResponse, Form};
 use serde::Deserialize;
-use crate::{templates::*, SyncAppState};
 
 pub async fn index() -> impl IntoResponse {
     IndexTemplate {}
@@ -19,7 +19,6 @@ pub async fn add_todo(
     State(state): State<SyncAppState>,
     Form(todo): Form<AddTodoRequest>,
 ) -> impl IntoResponse {
-
     let mut lock = state.todos.lock().unwrap();
     lock.push(todo.todo);
 

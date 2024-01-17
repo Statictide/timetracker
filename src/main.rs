@@ -28,9 +28,6 @@ async fn main() -> shuttle_axum::ShuttleAxum {
     let app_state = SyncAppState::default();
 
     info!("initializing router...");
-    let assets_path = std::env::current_dir().unwrap();
-    let assets_path = assets_path.to_str().unwrap();
-
     let pages_router = Router::new()
         .route("/", get(routes::index))
         .route("/time", get(routes::time_page));
@@ -42,8 +39,10 @@ async fn main() -> shuttle_axum::ShuttleAxum {
     let app: Router = Router::new()
         .nest("/", pages_router)
         .nest("/api", api_router)
-        .nest_service("/assets", ServeDir::new(format!("{assets_path}/assets")))
-        .layer(TraceLayer::new_for_http());
+        .nest_service("/assets", ServeDir::new("assets")) // serves static files
+        .layer(TraceLayer::new_for_http()) // log http requests
+        .layer(tower_livereload::LiveReloadLayer::new()) // reloads frontend on server restart
+        ;
 
     return Ok(app.into());
 }
