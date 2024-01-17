@@ -6,8 +6,8 @@ pub async fn index() -> impl IntoResponse {
     IndexTemplate {}
 }
 
-pub async fn another_page() -> impl IntoResponse {
-    AnotherPageTemplate {}
+pub async fn time_page() -> impl IntoResponse {
+    TimePageTemplate {}
 }
 
 #[derive(Deserialize)]

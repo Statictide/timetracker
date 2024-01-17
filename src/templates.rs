@@ -9,8 +9,8 @@ pub struct HelloTemplate;
 pub struct IndexTemplate;
 
 #[derive(Template)]
-#[template(path = "pages/another-page.html")]
-pub struct AnotherPageTemplate;
+#[template(path = "pages/time.html")]
+pub struct TimePageTemplate;
 
 #[derive(Template)]
 #[template(path = "components/todo-list.html")]
