@@ -13,7 +13,9 @@
     <!-- Allow any inheriting page to extend head with additional assets -->
     {% block head %}{% endblock %}
   </head>
-  <body>
+  <body
+    class="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900"
+  >
     <div id="content">
       <!-- Inheriting pages will have their content rendered here, similar to app root in React, Angular, etc. -->
       {% block content %}{% endblock %}

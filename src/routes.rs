@@ -1,6 +1,7 @@
 use crate::{templates::*, SyncAppState};
 use axum::{extract::State, response::IntoResponse, Form};
 use serde::Deserialize;
+use tracing::{info};
 
 pub async fn index() -> impl IntoResponse {
     IndexTemplate {}
@@ -8,6 +9,14 @@ pub async fn index() -> impl IntoResponse {
 
 pub async fn time_page() -> impl IntoResponse {
     TimePageTemplate {}
+}
+
+pub async fn todo_page() -> impl IntoResponse {
+    TodoPageTemplate {}
+}
+
+pub async fn hello() -> impl IntoResponse {
+    HelloPageTemplate {}
 }
 
 #[derive(Deserialize)]
@@ -19,6 +28,8 @@ pub async fn add_todo(
     State(state): State<SyncAppState>,
     Form(todo): Form<AddTodoRequest>,
 ) -> impl IntoResponse {
+    info!("adding todo: {}", todo.todo);
+
     let mut lock = state.todos.lock().unwrap();
     lock.push(todo.todo);
 

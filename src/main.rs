@@ -6,7 +6,7 @@ use axum::{
     routing::{get, post},
     Router,
 };
-use tower_http::{services::ServeDir, trace::TraceLayer};
+use tower_http::services::ServeDir;
 use tracing::info;
 
 type SyncAppState = Arc<AppState>;
@@ -25,24 +25,28 @@ impl Default for AppState {
 
 #[shuttle_runtime::main]
 async fn main() -> shuttle_axum::ShuttleAxum {
+    use routes::*;
     let app_state = SyncAppState::default();
-
     info!("initializing router...");
     let pages_router = Router::new()
-        .route("/", get(routes::index))
-        .route("/time", get(routes::time_page));
+        .route("/", get(index))
+        .route("/todo", get(todo_page))
+        .route("/time", get(time_page))
+        .route("/hello", get(hello));
 
-    let api_router = Router::new()
+    let htmx_router = Router::new()
         .route("/todos", post(routes::add_todo))
+        .route("/hello", get(|| async { "Hello!" }))
         .with_state(app_state);
 
     let app: Router = Router::new()
         .nest("/", pages_router)
-        .nest("/api", api_router)
+        .nest("/hx", htmx_router)
+        .route("/api", get(|| async { "Reserved for the API" }))
         .nest_service("/assets", ServeDir::new("assets")) // serves static files
-        .layer(TraceLayer::new_for_http()) // log http requests
         .layer(tower_livereload::LiveReloadLayer::new()) // reloads frontend on server restart
         ;
 
+    info!("starting server...");
     return Ok(app.into());
 }
