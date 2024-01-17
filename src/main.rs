@@ -3,7 +3,7 @@ mod templates;
 use std::sync::{Arc, Mutex};
 
 use axum::{
-    routing::{get, post},
+    routing::get,
     Router,
 };
 use tower_http::services::ServeDir;
@@ -35,7 +35,7 @@ async fn main() -> shuttle_axum::ShuttleAxum {
         .route("/hello", get(hello));
 
     let htmx_router = Router::new()
-        .route("/todos", post(routes::add_todo))
+        .route("/todos", get(get_todo).post(add_todo))
         .route("/hello", get(|| async { "Hello!" }))
         .with_state(app_state);
 
@@ -43,9 +43,8 @@ async fn main() -> shuttle_axum::ShuttleAxum {
         .nest("/", pages_router)
         .nest("/hx", htmx_router)
         .route("/api", get(|| async { "Reserved for the API" }))
-        .nest_service("/assets", ServeDir::new("assets")) // serves static files
-        .layer(tower_livereload::LiveReloadLayer::new()) // reloads frontend on server restart
-        ;
+        .nest_service("/assets", ServeDir::new("assets")); // serves static files from the assets directory
+        
 
     info!("starting server...");
     return Ok(app.into());
