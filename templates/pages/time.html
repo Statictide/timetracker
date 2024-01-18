@@ -5,4 +5,34 @@
 
 {% block content %}
 <p>Time has yet to begin</p>
+<div class="grid grid-cols-8 border text-center">
+    <div>Time</div>
+    {% for day in days %}
+    <div>{{ day }}</div>
+    {% endfor %}
+</div>
+<div class="grid grid-cols-8 divide-x border text-center">
+    <div id="time">
+        <div class="grid grid-rows-24 divide-y">
+            {% for hour in hours %}
+            <div>
+                {% for minute in minutes %}
+                <div>{{ hour }}:{{ minute }}</div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% for day in days %}
+    <div class="grid grid-rows-24 divide-y flex">
+        {% for hour in hours %}
+        <div>
+            {% for minute in minutes %}
+            <div></div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

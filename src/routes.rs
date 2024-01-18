@@ -8,7 +8,7 @@ pub async fn index() -> impl IntoResponse {
 }
 
 pub async fn time_page() -> impl IntoResponse {
-    TimePageTemplate {}
+    TimePageTemplate::new()
 }
 
 pub async fn todo_page() -> impl IntoResponse {
