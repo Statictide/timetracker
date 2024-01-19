@@ -4,16 +4,20 @@
 {% block title %}Track your time{% endblock %}
 
 {% block content %}
-<p>Time has yet to begin</p>
-<div class="grid grid-cols-8 border text-center">
-    <div>Time</div>
-    {% for day in days %}
-    <div>{{ day }}</div>
-    {% endfor %}
+<div>Time has yet to begin</div>
+<div id="header" class="text-center flex">
+    <div class="">Time</div>
+    <div class="grid grid-cols-7 flex-1">
+        {% for day in days %}
+        <div>{{ day }}</div>
+        {% endfor %}
+        </div>
+    </div>
 </div>
-<div class="grid grid-cols-8 divide-x border text-center">
-    <div id="time">
-        <div class="grid grid-rows-24 divide-y">
+
+<div id="content" class="flex">
+    <div id="time" class="text-xs flex-none">
+        <div class="grid grid-rows-24 border-r divide-y">
             {% for hour in hours %}
             <div>
                 {% for minute in minutes %}
@@ -23,16 +27,18 @@
             {% endfor %}
         </div>
     </div>
-    {% for day in days %}
-    <div class="grid grid-rows-24 divide-y flex">
-        {% for hour in hours %}
-        <div>
-            {% for minute in minutes %}
-            <div></div>
+    <div class="grid grid-cols-7 divide-x flex-1">
+        {% for day in days %}
+        <div class="grid grid-rows-24 divide-y">
+            {% for hour in hours %}
+            <div class="flex flex-col">
+                {% for minute in minutes %}
+                <div class="flex-1 hover:bg-sky-800 rounded"></div>
+                {% endfor %}
+            </div>
             {% endfor %}
         </div>
         {% endfor %}
     </div>
-    {% endfor %}
-</div>
-{% endblock %}
+    {% endblock %}
+    </div>
