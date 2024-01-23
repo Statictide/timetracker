@@ -18,3 +18,9 @@ tower-livereload = "0.9.1"
 tracing = "0.1.0"
 shuttle-axum = "0.36.0"
 shuttle-runtime = "0.36.0"
+chrono = "0.4.31"
+time = { version = "0.3.0", features = ["serde"] }
+
+
+[profile.dev.package.askama_derive]
+opt-level = 3 # faster compile https://djc.github.io/askama/performance.html

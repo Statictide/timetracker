@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link href="C:/Users/markn/Documents/code/timetracker/assets/main.css" rel="stylesheet" />
+    <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://livejs.com/live.js"></script>
+    <!-- htmx from the unpkg CDN - your mileage may vary -->
+
+    <!-- Allow any inheriting page to set it's own title -->
+    <title>title</title>
+
+    <!-- Allow any inheriting page to extend head with additional assets -->
+    
+  </head>
+  <body class="antialiased text-slate-400 bg-slate-900">
+    <div id="content">
+      <!-- Inheriting pages will have their content rendered here, similar to app root in React, Angular, etc. -->
+      
+<div>Time is taking shape</div>
+<div id="header" class="flex text-center">
+    <div class="">Time</div>
+    <div class="grid grid-cols-3 flex-1">
+        <div>Monday</div>
+        <div>Tuesday</div>
+        <div>Wednesday</div>
+    </div>
+</div>
+
+<div id="table" class="flex"> <!-- header -->
+    <div class="flex-none text-xs">
+        <div class="grid grid-rows-24 border-r divide-y">
+            <div>
+                <div>00:00</div>
+                <div>00:15</div>
+                <div>00:30</div>
+                <div>00:45</div>
+            </div>
+            <div>
+                <div>01:00</div>
+                <div>01:15</div>
+                <div>01:30</div>
+                <div>01:45</div>
+            </div>
+            <div>
+                <div>02:00</div>
+                <div>02:15</div>
+                <div>02:30</div>
+                <div>02:45</div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-1 grid grid-cols-3 divide-x"> 
+        
+        <div class="flex relative">
+            <div class="flex-1 flex"> <!-- day column-->
+                <div class="flex-1 grid grid-rows-24 divide-y">
+                    
+                    <div class="flex flex-col"> <!-- hour column-->
+                        <div class="flex-1 hover:bg-sky-800 rounded"></div>
+                        <div class="flex-1 hover:bg-sky-800 rounded"></div>
+                        <div class="flex-1 hover:bg-sky-800 rounded"></div>
+                        <div class="flex-1 hover:bg-sky-800 rounded"></div>
+                    </div>
+                    
+                    <div class="flex flex-col"> <!-- hour column-->
+                        <div class="flex-1 hover:bg-sky-800 rounded"></div>
+                        <div class="flex-1 hover:bg-sky-800 rounded"></div>
+                        <div class="flex-1 hover:bg-sky-800 rounded"></div>
+                        <div class="flex-1 hover:bg-sky-800 rounded"></div>
+                    </div>
+                    
+                    <div class="flex flex-col"> <!-- hour column-->
+                        <div class="flex-1 hover:bg-sky-800 rounded"></div>
+                        <div class="flex-1 hover:bg-sky-800 rounded"></div>
+                        <div class="flex-1 hover:bg-sky-800 rounded"></div>
+                        <div class="flex-1 hover:bg-sky-800 rounded"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute flex bg-sky-800 w-[100%] top-[calc(100 / 3)%]">
+                <div class="bg-sky-800 p-1">
+                    <p>I am a box</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+</body>
+</html>

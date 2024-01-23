@@ -4,41 +4,46 @@
 {% block title %}Track your time{% endblock %}
 
 {% block content %}
-<div>Time has yet to begin</div>
-<div id="header" class="text-center flex">
+<div>Time is taking shape</div>
+<div id="header" class="flex text-center">
     <div class="">Time</div>
     <div class="grid grid-cols-7 flex-1">
-        {% for day in days %}
-        <div>{{ day }}</div>
+        {% for day in days -%}
+        <div>{{ day.name }}</div>
         {% endfor %}
-        </div>
     </div>
 </div>
 
-<div id="content" class="flex">
-    <div id="time" class="text-xs flex-none">
+<div id="table" class="flex"> <!-- header -->
+    <div  class="flex-none text-xs">
         <div class="grid grid-rows-24 border-r divide-y">
-            {% for hour in hours %}
+            {% for hour in hours -%}
             <div>
-                {% for minute in minutes %}
+                {% for minute in minutes -%}
                 <div>{{ hour }}:{{ minute }}</div>
                 {% endfor %}
             </div>
             {% endfor %}
         </div>
     </div>
-    <div class="grid grid-cols-7 divide-x flex-1">
-        {% for day in days %}
-        <div class="grid grid-rows-24 divide-y">
-            {% for hour in hours %}
-            <div class="flex flex-col">
-                {% for minute in minutes %}
-                <div class="flex-1 hover:bg-sky-800 rounded"></div>
-                {% endfor %}
+    <div class="flex-1 grid grid-cols-7 divide-x"> 
+        {% for day in days -%}
+        <div class="flex">
+            <div class="flex-1 flex"> <!-- day column-->
+                <div class="flex-1 grid grid-rows-24 divide-y">
+                    {% for hour in hours -%}
+                    <div class="flex flex-col"> <!-- hour column-->
+                        {% for minute in minutes -%}
+                        <div class="flex-1 hover:bg-sky-800 rounded"></div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-            {% endfor %}
+            <div class="flex-none absolute " style="width: 100%; top: calc(300px);">
+            </div>
         </div>
         {% endfor %}
     </div>
-    {% endblock %}
-    </div>
+</div>
+{% endblock %}
